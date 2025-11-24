@@ -33,12 +33,13 @@ print("AIS iniciado. Aguardando mensagens...\n")
 # Lista em memória (opcional)
 ais_log = []
 
-# CSV simples no diretório atual
 CSV_FILE = "ais_log.csv"
-if not os.path.exists(CSV_FILE):
-    with open(CSV_FILE, "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["timestamp_local", "timestamp", "mmsi", "latitude", "longitude", "time"])
+
+# Sempre recria o arquivo do zero ao iniciar o script
+with open(CSV_FILE, "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["timestamp_local", "timestamp", "mmsi", "latitude", "longitude", "time"])
+
 
 # inicia o contador de tempo
 start_time = time.time()
@@ -103,3 +104,4 @@ finally:
         pass
 
     print("AIS-catcher finalizado. CSV salvo em:", os.path.abspath(CSV_FILE))
+
